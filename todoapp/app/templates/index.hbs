@@ -1,0 +1,35 @@
+<div class="layout-column">
+    <h1>ToDo List</h1>
+
+    <div class="layout layout-sm-column">
+        <div class="flex-10"></div>
+        {{paper-input class="flex-50" label="New Task" type="text" value=item onChange=(action (mut item))}}
+        {{!-- <Input @type="text" @value={{item}} placeholder="New Task"/>  --}}
+      
+        <div class="flex-5"> 
+            {{#paper-button raised=true primary=true onClick=(action "add")}}Add{{/paper-button}}
+            {{!-- <button {{on "click" add}}>Add</button><br><br> --}}
+        </div>
+        {{!-- <div class="flex-25"></div> --}}
+    </div>
+    <table>
+        {{#each @model.list as |list|}}
+        <tr>
+            <td>{{list.item}}</td>
+            <td>{{#if list.status}}Completed {{/if}}</td>
+            <td>
+                {{#paper-button raised=true accent=true onClick=(action "done" list)}}Done{{/paper-button}}
+                {{!-- <button {{on "click" (fn done list)}}>Done</button> --}}
+            </td>
+            <td>
+                {{#paper-button raised=true accent=true onClick=(action "edit" list)}}Edit{{/paper-button}}
+                {{!-- <button {{on "click" (fn edit list)}}>Edit</button> --}}
+            </td>
+            <td>
+                {{#paper-button raised=true accent=true onClick=(action "delete" list)}}Delete{{/paper-button}}
+                {{!-- <button {{on "click" (fn delete list)}}>Delete</button> --}}
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
